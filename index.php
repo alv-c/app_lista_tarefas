@@ -1,0 +1,1 @@
+<?php require_once $_SERVER["DOCUMENT_ROOT"] . '/app_lista_tarefas_public/index.php'; ?>
