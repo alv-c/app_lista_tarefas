@@ -16,7 +16,10 @@
         }
 
         public function recuperar() {
-            
+            $query = "SELECT TAREFAS.id, TAREFAS.tarefa, STATUS.status FROM tb_tarefas AS TAREFAS LEFT JOIN tb_status AS STATUS ON (STATUS.id = TAREFAS.id_status)";
+            $stmt = $this->conexao->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
         public function atualizar() {

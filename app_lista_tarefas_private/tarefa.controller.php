@@ -12,6 +12,4 @@ if ($acao == 'inserir') {
     $tarefa->__set('tarefa', $_POST['tarefa']);
     $tarefaService->inserir();
     header("Location: /app_lista_tarefas_public/nova_tarefa.php?inclusao=true");
-} else if ($acao == 'recuperar') {
-    echo 'AQUII';
-}
+} else if ($acao == 'recuperar') $tarefas = $tarefaService->recuperar();
