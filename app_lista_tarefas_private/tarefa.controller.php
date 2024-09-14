@@ -12,4 +12,9 @@ if ($acao == 'inserir') {
     $tarefa->__set('tarefa', $_POST['tarefa']);
     $tarefaService->inserir();
     header("Location: /app_lista_tarefas_public/nova_tarefa.php?inclusao=true");
+} else if ($acao == 'atualizar') {
+    $tarefa->__set('id', $_POST['id']);
+    $tarefa->__set('tarefa', $_POST['tarefa']);
+    if($tarefaService->atualizar()) 
+        header("Location: /app_lista_tarefas_public/todas_tarefas.php?atualizacao=true");
 } else if ($acao == 'recuperar') $tarefas = $tarefaService->recuperar();
