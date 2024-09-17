@@ -42,6 +42,14 @@ require_once "{$_SERVER["DOCUMENT_ROOT"]} . /app_lista_tarefas_public/tarefa.con
 			tarefa.innerHTML = '';
 			tarefa.insertBefore(form, tarefa[0]);
 		}
+
+		function remover(id) {
+			location.href = `/app_lista_tarefas_public/tarefa.controller.php?acao=remover&id=${id}`;
+		}
+
+		function marcarRealizado(id) {
+			location.href = `/app_lista_tarefas_public/tarefa.controller.php?acao=marcar_realizado&id=${id}`;
+		}
 	</script>
 </head>
 
@@ -64,7 +72,6 @@ require_once "{$_SERVER["DOCUMENT_ROOT"]} . /app_lista_tarefas_public/tarefa.con
 					<li class="list-group-item active"><a href="#">Todas tarefas</a></li>
 				</ul>
 			</div>
-
 			<div class="col-sm-9">
 				<div class="container pagina">
 					<div class="row">
@@ -78,9 +85,11 @@ require_once "{$_SERVER["DOCUMENT_ROOT"]} . /app_lista_tarefas_public/tarefa.con
 										<span class="badge badge-warning"><?= $value['status'] ?></span>
 									</div>
 									<div class="col-sm-3 mt-2 d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger" style="cursor: pointer;"></i>
-										<i class="fas fa-edit fa-lg text-info" onclick="editar(<?= $value['id'] ?>, '<?= $value['tarefa'] ?>')" style="cursor: pointer;"></i>
-										<i class="fas fa-check-square fa-lg text-success" style="cursor: pointer;"></i>
+										<i class="fas fa-trash-alt fa-lg text-danger" onclick="remover(<?= $value['id'] ?>)" style="cursor: pointer;"></i>
+										<?php if ($value['status'] == 'pendente') : ?>
+											<i class="fas fa-edit fa-lg text-info" onclick="editar(<?= $value['id'] ?>, '<?= $value['tarefa'] ?>')" style="cursor: pointer;"></i>
+											<i class="fas fa-check-square fa-lg text-success" onclick="marcarRealizado(<?= $value['id'] ?>)" style="cursor: pointer;"></i>
+										<?php endif; ?>
 									</div>
 								</div>
 							<?php endforeach; ?>

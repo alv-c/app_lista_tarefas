@@ -17,4 +17,13 @@ if ($acao == 'inserir') {
     $tarefa->__set('tarefa', $_POST['tarefa']);
     if($tarefaService->atualizar()) 
         header("Location: /app_lista_tarefas_public/todas_tarefas.php?atualizacao=true");
+} else if ($acao == 'remover') {
+    $tarefa->__set('id', $_GET['id']);
+    if($tarefaService->remover())
+        header("Location: /app_lista_tarefas_public/todas_tarefas.php?remocao=true");
+} else if ($acao == 'marcar_realizado') {
+    $tarefa->__set('id', $_GET['id']);
+    $tarefa->__set('id_status', 2);
+    if($tarefaService->marcar_realizado())
+        header("Location: /app_lista_tarefas_public/todas_tarefas.php?marcar_realizado=true");
 } else if ($acao == 'recuperar') $tarefas = $tarefaService->recuperar();
