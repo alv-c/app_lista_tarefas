@@ -1,7 +1,7 @@
 <?php
     class Conexao {
         private $host = 'localhost';
-        private $dbname = 'php_com_pdo';
+        private $dbname = 'lista_tarefas_db';
         private $user = 'root';
         private $senha = 'alvaro01021998';
         
